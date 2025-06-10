@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ShoppingCart, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from 'react';
 
 export function Header() {
@@ -55,9 +55,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] p-6">
-              <SheetHeader className="mb-4">
-                <SheetTitle className="text-left text-xl font-headline">Navigation Menu</SheetTitle>
-              </SheetHeader>
+              <SheetTitle className="text-left text-xl font-headline mb-6">Navigation Menu</SheetTitle>
               <nav className="flex flex-col space-y-4">
                 {navLinks.map(link => (
                   <Link
@@ -88,3 +86,4 @@ export function Header() {
     </header>
   );
 }
+
