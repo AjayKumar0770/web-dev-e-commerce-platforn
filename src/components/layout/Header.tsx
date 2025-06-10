@@ -1,10 +1,11 @@
+
 "use client";
 
 import Link from 'next/link';
 import { ShoppingCart, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/hooks/useCart';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from 'react';
 
 export function Header() {
@@ -49,12 +50,15 @@ export function Header() {
         <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="Open navigation menu">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] p-6">
-              <nav className="flex flex-col space-y-4 mt-8">
+              <SheetHeader className="mb-4">
+                <SheetTitle className="text-left text-xl font-headline">Navigation Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col space-y-4">
                 {navLinks.map(link => (
                   <Link
                     key={link.href}
@@ -66,11 +70,11 @@ export function Header() {
                   </Link>
                 ))}
                  <Link href="/cart" passHref>
-                    <Button variant="ghost" className="relative justify-start text-lg" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button variant="ghost" className="relative justify-start text-lg px-0" onClick={() => setIsMobileMenuOpen(false)}>
                       <ShoppingCart className="h-5 w-5 mr-2" />
                       Cart
                       {itemCount > 0 && (
-                        <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">
+                        <span className="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs text-accent-foreground">
                           {itemCount}
                         </span>
                       )}
